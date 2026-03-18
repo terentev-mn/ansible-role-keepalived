@@ -46,7 +46,7 @@ keepalived:
     virtual_routes:
       - src 10.10.10.33 to 10.0.0.0/8 via 10.10.10.1 dev eth0
       - src 10.10.10.33 to 192.168.0.0/16 via 10.10.10.1 dev eth0
-      - src 11.11.11.88 to 0.0.0.0/1 via 142.91.15.88 dev eth1
+      - src 11.11.11.88 to 0.0.0.0/1 via 11.11.11.88 dev eth1
       - src 11.11.11.88 to 128.0.0.0/1 via 11.11.11.88 dev eth1
 
     track_script:
