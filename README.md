@@ -3,7 +3,7 @@ Keepalived
 
 This role installs and configures Keepalived.
 
-It is based on the evrardjp/ansible-keepalived role, but focuses on ease of use.
+It is based on the [evrardjp/ansible-keepalived](https://github.com/evrardjp/ansible-keepalived) role, but focuses on ease of use.
 The templates have been refactored into a single universal file, and the variables structure has been redesigned to closely match the actual configuration file syntax.
 
 
@@ -101,7 +101,7 @@ License
 -------
 
 Apache2
-This role is based on evrardjp/ansible-keepalived. Original license and authorship retained as per Apache 2.0 requirements.
+This role is based on [evrardjp/ansible-keepalived](https://github.com/evrardjp/ansible-keepalived). Original license and authorship retained as per Apache 2.0 requirements.
 
 Author Information
 ------------------
