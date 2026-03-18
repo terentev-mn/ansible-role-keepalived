@@ -1,0 +1,25 @@
+---
+
+- name: Get list of SELinux modules loaded
+  ansible.builtin.command: semodule -l
+  changed_when: false
+  register: selinux_modules
+  check_mode: false
+
+- name: Ensure SELinux packages are installed
+  ansible.builtin.package:
+    name: "{{ keepalived_selinux_packages }}"
+    state: present
+  when:
+    - keepalived_selinux_compile_rules[0] not in selinux_modules.stdout
+
+- name: Compile SELinux rules
+  ansible.builtin.include_tasks:
+    file: keepalived_selinux_compile.yml
+  when:
+    - selinux_policy_name not in selinux_modules.stdout
+  loop: "{{ keepalived_selinux_compile_rules }}"
+  loop_control:
+    loop_var: selinux_policy_name
+  vars:
+    selinux_policy_name_basename: "{{ selinux_policy_name | basename }}"

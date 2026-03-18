@@ -1,0 +1,9 @@
+module keepalived_setpgid 1.0;
+
+require {
+        type keepalived_t;
+        class process setpgid;
+}
+
+#============= keepalived_t ==============
+allow keepalived_t self:process setpgid;
