@@ -3,7 +3,7 @@ Keepalived
 
 This role installs and configures Keepalived.
 
-It is based on the evrardjp/ansible-keepalived role, but focuses on ease of use.
+It is based on the [evrardjp/ansible-keepalived](https://github.com/evrardjp/ansible-keepalived) role, but focuses on ease of use.
 The templates have been refactored into a single universal file, and the variables structure has been redesigned to closely match the actual configuration file syntax.
 
 
@@ -46,7 +46,7 @@ keepalived:
     virtual_routes:
       - src 10.10.10.33 to 10.0.0.0/8 via 10.10.10.1 dev eth0
       - src 10.10.10.33 to 192.168.0.0/16 via 10.10.10.1 dev eth0
-      - src 11.11.11.88 to 0.0.0.0/1 via 142.91.15.88 dev eth1
+      - src 11.11.11.88 to 0.0.0.0/1 via 11.11.11.88 dev eth1
       - src 11.11.11.88 to 128.0.0.0/1 via 11.11.11.88 dev eth1
 
     track_script:
@@ -73,7 +73,7 @@ vrrp_instance vr-33 {
   virtual_routes {
     src 10.10.10.33 to 10.0.0.0/8 via 10.10.10.1 dev eth0
     src 10.10.10.33 to 192.168.0.0/16 via 10.10.10.1 dev eth0
-    src 11.11.11.88 to 0.0.0.0/1 via 142.91.15.88 dev eth1
+    src 11.11.11.88 to 0.0.0.0/1 via 11.11.11.88 dev eth1
     src 11.11.11.88 to 128.0.0.0/1 via 11.11.11.88 dev eth1
   }
   track_script {
@@ -101,7 +101,7 @@ License
 -------
 
 Apache2
-This role is based on evrardjp/ansible-keepalived. Original license and authorship retained as per Apache 2.0 requirements.
+This role is based on [evrardjp/ansible-keepalived](https://github.com/evrardjp/ansible-keepalived). Original license and authorship retained as per Apache 2.0 requirements.
 
 Author Information
 ------------------
