@@ -1,0 +1,58 @@
+---
+# When starting keepalived with SELinux, it may be necessary to compile
+# rules. Override this list with file paths to compile.
+keepalived_selinux_compile_rules:
+  - keepalived_ping
+  - keepalived_setpgid
+
+# Scripts can be defined for keepalived that execute
+# notification scripts. Examples are provided below and in the tests directory.
+# keepalived_scripts:
+#   - dst: "/etc/keepalived/haproxy_check.sh"
+#     content: |
+#       #!/bin/sh
+#       /usr/bin/curl http://127.0.0.1
+#     mode: "0755"  # optional, default is 0755
+keepalived_scripts: []
+
+# Keepalived scripts may depend on additional packages.
+keepalived_scripts_packages: []
+
+# Package manager cache timeout.
+# After this time, the role will update the package manager cache.
+# This variable will be removed after bugs are fixed in ansible upstream.
+cache_timeout: 600
+
+keepalived_bind_on_non_local: false
+
+# During VIP failover, some applications might "hang",
+# resending data without updating ARP.
+# This variable sets the number of retries after which
+# the kernel considers the connection dead. It directly impacts
+# the VIP failover speed.
+# The default sysctl value is 15, resulting in a recovery time of ~13 minutes.
+# 8 retries is the minimum per RFC 1122 and provides a timeout of ~100 seconds.
+# Oracle recommends a value of 3 for RAC configurations,
+# which might be too aggressive for some scenarios.
+keepalived_sysctl_tcp_retries: 8
+
+# Whether to add a systemd override for keepalived:
+# Wants=network-online.target
+# After=network-online.target
+keepalived_systemd_overrides: true
+
+# Whether to add the systemd Restart=always option
+# Depends on keepalived_systemd_overrides; both must be True to add
+keepalived_systemd_override_service_restart: false
+
+# Path to the keepalived daemon options file
+# For Debian-based systems usually /etc/default/keepalived
+# For RedHat-based systems usually /etc/sysconfig/keepalived
+keepalived_daemon_options_file_path: "{{ _keepalived_daemon_options_file_path }}"
+
+# Override additional keepalived daemon arguments,
+# which will be applied inside the keepalived_daemon_options_file_path.
+# Example:
+# keepalived_daemon_default_options_overrides:
+#   - "DAEMON_ARGS='--snmp'"
+keepalived_daemon_default_options_overrides: []

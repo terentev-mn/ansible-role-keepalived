@@ -1,0 +1,11 @@
+
+module keepalived_haproxy_pid_file 1.0;
+
+require {
+    type haproxy_var_run_t;
+    type keepalived_t;
+    class file { getattr open read };
+}
+
+#============= keepalived_t ==============
+allow keepalived_t haproxy_var_run_t:file { getattr open read };
